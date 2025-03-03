@@ -23,8 +23,17 @@ android {
     }
 
     buildTypes {
+        debug {
+            isDebuggable = true
+            isMinifyEnabled = false
+            isShrinkResources = false
+            applicationIdSuffix = ".debug"
+        }
         release {
+            isDebuggable = false
             isMinifyEnabled = true
+            isShrinkResources = true
+            applicationIdSuffix = ""
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -44,7 +53,7 @@ android {
 }
 
 dependencies {
-    implementation("com.arthenica:ffmpeg-kit-full:6.0.LTS")
+    implementation(libs.ffmpeg.kit.full)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -55,6 +64,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.ui.text.google.fonts)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.documentfile)
 
     testImplementation(libs.junit)
 
